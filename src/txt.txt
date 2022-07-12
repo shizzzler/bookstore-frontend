@@ -1,0 +1,81 @@
+/*
+    'https://api.nytimes.com/svc/books/v3/lists/current/young-adult.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    'https://api.nytimes.com/svc/books/v3/lists/current/graphic-books-and-manga.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    'https://api.nytimes.com/svc/books/v3/lists/current/education.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT'
+
+    let ignore = false;
+    if (!ignore) {
+      link.forEach(link => {
+        fetch(link)
+          .then(res => res.json())
+          .then(data => {
+            
+            console.log(data);
+            setData(linkData => [...linkData, data]);
+            
+          })
+        return () => {setLoading(false)};
+      })
+    }  
+
+    setLoading(false)
+    return () => { ignore = true }
+
+
+
+    if (!ignore){
+      fetch('https://api.nytimes.com/svc/books/v3/lists/current/Combined-Print-and-E-Book-Fiction.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setApiData(apiData => [...apiData, data]);
+        return fetch('https://api.nytimes.com/svc/books/v3/lists/current/combined-print-and-e-book-nonfiction.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT')
+    })
+      .then(res => res.json())  
+      .then(data => {
+        console.log(data);
+        setApiData(apiData => [...apiData, data]);
+        return fetch('https://api.nytimes.com/svc/books/v3/lists/current/young-adult.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT')
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setApiData(apiData => [...apiData, data]);
+      })
+    }
+*/
+
+const [link] = useState([
+    'https://api.nytimes.com/svc/books/v3/lists/current/Combined-Print-and-E-Book-Fiction.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    'https://api.nytimes.com/svc/books/v3/lists/current/combined-print-and-e-book-nonfiction.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    'https://api.nytimes.com/svc/books/v3/lists/current/young-adult.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    'https://api.nytimes.com/svc/books/v3/lists/current/graphic-books-and-manga.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    'https://api.nytimes.com/svc/books/v3/lists/current/business-books.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+     'https://api.nytimes.com/svc/books/v3/lists/current/humor.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+     'https://api.nytimes.com/svc/books/v3/lists/current/science.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT',
+    https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=hI0nSjGzLv2cyzjeIlwIlZ56YgFn2AOT,
+    
+
+  ]);
+
+  const express = require('express');
+const PORT = process.env.PORT || 3002;
+
+// const fetch = require('node-fetch');
+// let settings = { method: "Get" };
+
+
+
+const app = express();
+//const data = require('../database/booksDB');
+
+
+app.get("/", (req, res) => {
+    
+  //res.json({data})
+  res.json({"message": "hello"});
+});
+
+
+
+app.listen(PORT, () => console.log(`server running on ${PORT}`));

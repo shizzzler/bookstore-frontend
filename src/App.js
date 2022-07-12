@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Outlet, Link } from "react-router-dom";
+import Item from './components/Item';
+
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [ itemData, setItemData] = useState();
+
+  // this takes in the information of the clicked card as parameter
+  const toggleItemPopup = (data) => {
+    setIsOpen(!isOpen);
+    setItemData(data)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App">  
+        <nav>
+            <h1><b>BOOKSTORE</b></h1>
+            <div>
+              <Link to='/'><h3 >Home</h3></Link>
+              <Link to='categories'><h3>More Categories</h3></Link>
+              <Link to='contacts'><h3>Contacts</h3></Link>
+            </div>                
+        </nav>      
+        <Outlet context={[toggleItemPopup]}/>
+        {isOpen && <Item handleClose={toggleItemPopup} data={itemData}/>}
+          
+        
     </div>
   );
 }
