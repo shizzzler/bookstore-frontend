@@ -10,7 +10,7 @@ const Categories = () => {
   const [throwError, setThrowError] = useState(null);
 
   useEffect(() => {
-    fetch("https://git.heroku.com/safe-garden-20809.git/categories")
+    fetch("https://safe-garden-20809.herokuapp.com/categories")
       .then(res => {
         if(!res.ok){
           throw Error("failed to fetch data")
