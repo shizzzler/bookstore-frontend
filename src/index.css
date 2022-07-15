@@ -95,8 +95,7 @@ nav div a:active{
   color: #896b49;
   
 }
-.cards:hover,
-.cards:active{
+.cards:hover{
   transform: scale(.98);
   transition: 300ms;
   cursor: pointer;
