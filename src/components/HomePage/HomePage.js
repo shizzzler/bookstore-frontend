@@ -11,7 +11,7 @@ const HomePage = () => {
   const [throwError, setThrowError] = useState(null);
   
   useEffect(() => {
-    fetch("https://safe-garden-20809.herokuapp.com/home-page_books")
+    fetch("/home-page_books")
       .then(res => {
         if(!res.ok){
           throw Error("failed to fetch data");
